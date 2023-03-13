@@ -17,31 +17,25 @@ for (int i = 1; i <= n; i++)
     string name = Console.ReadLine();
     Console.Write("Salary: ");
     double salary = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-    employee = new Employee(id, name, salary);
-    list.Add(employee);
+    list.Add(new Employee(id, name, salary));
 }
 
 Console.WriteLine();
 Console.Write("Enter the employee id that will have salary increase: ");
 int idEmployee = int.Parse(Console.ReadLine());
 
-List<Employee> employee2 = list.FindAll(x => x.Id == idEmployee);
-if (employee2 == null)
+Employee emp = list.Find(x => x.Id == idEmployee);
+if (emp == null)
     Console.WriteLine("This id does not exist!");
 else
 {
-    foreach (Employee emp in employee2)
-    {
-        Console.Write("Enter the percentage: ");
-        double percentage = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-        emp.increaseSalary(percentage);
-    }
+    Console.Write("Enter the percentage: ");
+    double percentage = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+    emp.increaseSalary(percentage);
 }
 
 
 Console.WriteLine();
 Console.WriteLine("Updated list of employees: ");
-foreach (Employee emp in list)
-{
-    Console.WriteLine(emp);
-}
+foreach (Employee obj in list)
+    Console.WriteLine(obj);
